@@ -28,20 +28,24 @@ window.onload = () => {
 
 const loadKMZ = () => {
   state.map = L.map("mapDiv", {
-    zoomControl: false
+    zoomControl: false,
+    locate: true
   });
+  
 
   // 添加定位控件
-  L.control.locate({
-    position: 'topright', // 控件的位置
-    showPopup: false, // 显示popup
-    zoom: 9
-  })
-  .addTo(state.map);
+  L.control.locate().addTo(state.map);
 
   state.map.on('locationfound', (e) => {
-    state.map.setView(e.latlng)
-    console.log(123466, e)
+    console.log('e', e.latlng)
+    /**
+     * lat: 33.4382789
+     * lng: -112.0178286
+     */
+    state.map.setView({lng: 33.4382789, lat: -112.0178286})
+  })
+  state.map.on('locationerror', (e) => {
+    console.log(111)
   })
 
 
@@ -52,22 +56,10 @@ const loadKMZ = () => {
   loadKMZ2(getLocalImgUrl("@/assets/b.kmz"))
 }
 
-// const getLocation = () => {
-// 	state.map.locate({
-// 		setView: true,
-// 		// watch: true, // 持续监听位置
-// 		// enableHighAccuracy: true, // 精准定位
-// 	});
+const getLocation = () => {
+  state.map.setView({lng: 33.4382789, lat: -112.0178286})
 	
-// 	// 'locationfound' 定位成功
-// 	state.map.once('locationfound', (e) => {
-// 		console.log(e)
-// 	});
-// 	// 'locationerror' 定位失败
-// 	state.map.once('locationerror', (e) => {
-// 	  console.log(e)
-// 	});
-// }
+}
 
 const loadKMZ2 = (str) => {
     fetch(str)
