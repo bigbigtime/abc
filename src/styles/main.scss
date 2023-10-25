@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.ui-button {
+    padding: 0;
+    background: none;
+    outline: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    span {
+        line-height: 1;
+    }
+    + .ui-button { margin-left: 10px; }
+}
+.ui-button-primary {
+    border-color: #00bbff;
+    background-color: #00bbff;
+    color: #fff;
+}
